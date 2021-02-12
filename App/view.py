@@ -25,6 +25,7 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
+import time
 
 
 """
@@ -89,6 +90,7 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        t1 = time.process_time_ns()
         catalog = initCatalog()
         loadData(catalog)
         print('Libros cargados: ' + str(lt.size(catalog['books'])))
@@ -96,6 +98,8 @@ while True:
         print('Géneros cargados: ' + str(lt.size(catalog['tags'])))
         print('Asociación de Géneros a Libros cargados: ' +
               str(lt.size(catalog['book_tags'])))
+        t2 = time.process_time_ns()
+        print('Tiempo: {0}'.format(t2 - t1))
 
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")
